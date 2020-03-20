@@ -1,5 +1,4 @@
 #include "LZespolona.hh"
-#include <iostream>
 #include <math.h>
 
 using std::cout;
@@ -7,6 +6,8 @@ using std::cin;
 using std::cerr;
 using std::showpos;
 using std::noshowpos;
+using std::istream;
+using std::ios;
 
 
 /*!
@@ -109,11 +110,34 @@ void wyswietl(LZespolona l){
     cout<<l.re;
 }
 
-void wczytaj(LZespolona *z){
+/*void wczytaj(LZespolona *z){
   char lnawias, pnawias, i;
   cin>>lnawias>>z->re>>z->im>>i>>pnawias;
   if(lnawias!='(' || pnawias!=')' || i!='i')
   {
     cerr<<"zle napisana liczba zespolona";
   }
+}*/
+
+istream & operator >> (istream & strm, LZespolona &Z1){
+  char znak;
+  strm>>znak;
+  if(znak!='(')
+    strm.setstate(ios::failbit);
+  strm>>Z1.re;
+  strm>>znak;
+  strm>>Z1.im;
+  if(znak=='-')
+    Z1.im=(-Z1.im);
+  else{
+    if (znak!='+'){
+      strm.setstate(ios::failbit);
+    }   
+  }  
+  strm>>znak;
+  if(znak!='i')
+    strm.setstate(ios::failbit);
+  strm>>znak;
+  if(znak!=')')
+    strm.setstate(ios::failbit);
 }

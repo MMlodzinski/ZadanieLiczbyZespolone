@@ -1,4 +1,5 @@
 #include "WyrazenieZesp.hh"
+#include "LZespolona.hh"
 
 #include <iostream>
 
@@ -83,4 +84,18 @@ LZespolona Oblicz(WyrazenieZesp  WyrZ){
     return wynik;
 }
 
+std::istream & operator >> (std::istream & strm, WyrazenieZesp & wyraz) {
+  strm >> wyraz.Arg1 >> wyraz.Op >> wyraz.Arg2;
+}
+
+std::istream & operator >> (std::istream & strm, Operator & op) {
+  char znak;
+  strm >> znak;
+    switch (znak) {
+  case '+':op = Op_Dodaj;
+  case '-':op = Op_Odejmij;
+  case '*':op = Op_Mnoz;
+  case '/':op = Op_Dziel;
+  }
+}
 
