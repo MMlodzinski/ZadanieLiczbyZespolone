@@ -86,16 +86,33 @@ LZespolona Oblicz(WyrazenieZesp  WyrZ){
 
 std::istream & operator >> (std::istream & strm, WyrazenieZesp & wyraz) {
   strm >> wyraz.Arg1 >> wyraz.Op >> wyraz.Arg2;
+  return strm;
 }
 
 std::istream & operator >> (std::istream & strm, Operator & op) {
   char znak;
   strm >> znak;
-    switch (znak) {
+  switch (znak) {
   case '+':op = Op_Dodaj;
   case '-':op = Op_Odejmij;
   case '*':op = Op_Mnoz;
   case '/':op = Op_Dziel;
   }
+  return strm;
+}
+
+std::ostream & operator << (std::ostream & strm, WyrazenieZesp & wyraz){
+    strm << wyraz.Arg1 << wyraz.Op << wyraz.Arg2;
+    return strm;
+}
+
+std::ostream & operator << (std::ostream & strm, Operator & op){
+    switch (op){
+    case Op_Dodaj:strm<<'+';break;
+    case Op_Odejmij:strm<<'-';break;
+    case Op_Mnoz:strm<<'*';break;
+    case Op_Dziel:strm<<'/';break;
+    }
+    return strm;
 }
 

@@ -8,6 +8,7 @@ using std::showpos;
 using std::noshowpos;
 using std::istream;
 using std::ios;
+using std::ostream;
 
 
 /*!
@@ -140,4 +141,10 @@ istream & operator >> (istream & strm, LZespolona &Z1){
   strm>>znak;
   if(znak!=')')
     strm.setstate(ios::failbit);
+  return strm;
+}
+
+ostream & operator << (ostream & strm, LZespolona &Z1){
+  strm<<'('<<Z1.re<<showpos<<Z1.im<<noshowpos<<"i)";
+  return strm;
 }

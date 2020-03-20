@@ -1,0 +1,12 @@
+test_arytm_zesp
+.vscode/launch.json
+.vscode/settings.json
+.vscode/tasks.json
+inc/LZespolona.hh~
+obj/BazaTestu.o
+obj/LZespolona.o
+obj/main.o
+obj/WyrazenieZesp.o
+src/LZespolona.cpp~
+src/main.cpp~
+src/WyrazenieZesp.cpp~

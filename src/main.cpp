@@ -8,13 +8,10 @@ using namespace std;
 
 int main(int argc, char **argv)
 {
-  LZespolona L1=utworz(2,3);
-  cin>>L1;
-  wyswietl(L1);
-  LZespolona L2=utworz(3,-2);
-  wyswietl(L2);
-  LZespolona L3=L1-L2;
-  wyswietl(L3);
+  WyrazenieZesp w1;
+  cin>>w1;
+  cout<<w1;
+
 
 
   /*

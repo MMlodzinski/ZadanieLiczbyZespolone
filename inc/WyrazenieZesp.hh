@@ -34,6 +34,8 @@ void Wyswietl(WyrazenieZesp  WyrZ);
 LZespolona Oblicz(WyrazenieZesp  WyrZ);
 std::istream & operator >> (std::istream & strm, WyrazenieZesp & wyraz);
 std::istream & operator >> (std::istream & strm, Operator & op);
+std::ostream & operator << (std::ostream & strm, WyrazenieZesp & wyraz);
+std::ostream & operator << (std::ostream & strm, Operator & op);
 
 
 #endif
