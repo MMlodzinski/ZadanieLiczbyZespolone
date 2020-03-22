@@ -120,61 +120,174 @@ void wyswietl(LZespolona l){
   }
 }*/
 
-istream & operator >> (istream & strm, LZespolona &Z1){
+std::istream & operator >> (std::istream &stream, LZespolona &LZ){
   char znak;
-  int a=1;
-  strm>>znak;
-  if(znak!='(')
-    strm.setstate(ios::failbit);
-  strm.get(znak);
-  if (znak=='-'){
-    a=-1;
-    strm.get(znak);
-  }
-  if (znak!='i'){
-    strm.unget();
-    if(!(strm>>Z1.re))strm.setstate(ios::failbit);
-    Z1.re=Z1.re*a;
-    strm.get(znak);
-    if(znak=='i'){
-      Z1.im=Z1.re;
-      Z1.re=0;
-    }else{
-      if(znak==')'){
-      Z1.im=0;
-      strm.unget();
-    }else{
-      if(znak=='-')
-        a=-1;
-    else if (znak=='+'){
-      a=1;
-    }else{
-      strm.setstate(ios::failbit);
-    }
-    strm.get(znak);
-    if(znak=='i'){
-      Z1.im=a;
-    }else{
-      strm.unget();
-   if(!(strm>>Z1.im))strm.setstate(ios::failbit);
-   Z1.im=Z1.im*a;
-      strm>>znak;
-      if(znak!='i')
-        strm.setstate(ios::failbit);
-    }
-    }
-  }
+  stream.clear();
+  stream>>znak;
+  if(znak!='('){
+    stream.setstate(ios::failbit); 
   }
   else{
 
-    Z1.re=0;
-    Z1.im=a;
+  stream.get(znak);
+  if(znak=='i') 
+  {
+    LZ.re=0;
+    LZ.im=1;
+    stream.get(znak);
+    if(znak!=')') 
+      stream.setstate(ios::failbit);
   }
-  strm>>znak;
-  if(znak!=')')
-    strm.setstate(ios::failbit);
+  else if(znak=='-'){
+    stream.get(znak);
+    if(znak=='i'){
+      LZ.re=0;
+      LZ.im=-1;
+      stream.get(znak);
+      if(znak!=')') 
+        stream.setstate(ios::failbit);
+    }
+    else{
+      stream.unget();
+      if(stream>>LZ.re){
+        LZ.re=-LZ.re;
+        stream.get(znak);
+        if(znak!='+' && znak!='-' && znak!=')' && znak!='i'){
+          stream.setstate(ios::failbit);
+        }
+
+        if(znak==')'){
+          LZ.im=0;
+        } 
+
+        if(znak=='i'){
+          LZ.im=LZ.re;
+          LZ.re=0;
+          stream.get(znak);
+          if(znak!=')') stream.setstate(ios::failbit);
+        }
+
+        if(znak=='-'){
+          stream.get(znak);
+          if(znak=='i'){
+            LZ.im=-1;
+            stream.get(znak);
+            if(znak!=')') stream.setstate(ios::failbit);
+
+          }
+          else {
+            stream.unget();
+            if(stream>>LZ.im){
+              LZ.im=-LZ.im;
+              stream.get(znak);
+              if(znak=='i'){
+                stream.get(znak);
+                if(znak!=')') stream.setstate(ios::failbit);
+              }
+              else stream.setstate(ios::failbit);
+            }
+            else stream.setstate(ios::failbit);
+          }
+        }
+
+        if(znak=='+'){
+          stream.get(znak);
+          if(znak=='i'){
+            LZ.im=1;
+            stream.get(znak);
+            if(znak!=')') stream.setstate(ios::failbit);
+
+          }
+          else {
+            stream.unget();
+            if(stream>>LZ.im){
+              stream.get(znak);
+              if(znak=='i'){
+                stream.get(znak);
+                if(znak!=')') stream.setstate(ios::failbit);
+              }
+              else stream.setstate(ios::failbit);
+            }
+            else stream.setstate(ios::failbit);
+          }
+
+        }
+      }
+      else stream.setstate(ios::failbit);
+    }
+  }
   
-  return strm;
+  else{ 
+    stream.unget();
+    if(stream>>LZ.re){
+      
+        stream.get(znak);
+        if(znak!='+' && znak!='-' && znak!=')' && znak!='i'){
+          stream.setstate(ios::failbit);
+        }
+
+        if(znak==')'){
+          LZ.im=0;
+        } 
+
+        if(znak=='i'){
+          LZ.im=LZ.re;
+          LZ.re=0;
+          stream.get(znak);
+          if(znak!=')') stream.setstate(ios::failbit);
+        }
+
+        if(znak=='-'){
+          stream.get(znak);
+          if(znak=='i'){
+            LZ.im=-1;
+            stream.get(znak);
+            if(znak!=')') stream.setstate(ios::failbit);
+
+          }
+          else{
+            stream.unget();
+            if(stream>>LZ.im){
+              LZ.im=-LZ.im;
+              stream.get(znak);
+              if(znak=='i'){
+                stream.get(znak);
+                if(znak!=')') stream.setstate(ios::failbit);
+              }
+              else stream.setstate(ios::failbit);
+            }
+            else stream.setstate(ios::failbit);
+          }
+        }
+
+        if(znak=='+'){
+          stream.get(znak);
+          if(znak=='i'){
+            LZ.im=1;
+            stream.get(znak);
+            if(znak!=')') stream.setstate(ios::failbit);
+
+          }
+          else {
+            stream.unget();
+            if(stream>>LZ.im){
+              stream.get(znak);
+              if(znak=='i'){
+                stream.get(znak);
+                if(znak!=')') stream.setstate(ios::failbit);
+              }
+              else stream.setstate(ios::failbit);
+            }
+            else stream.setstate(ios::failbit);
+          }
+
+        }
+      }
+      else stream.setstate(ios::failbit);
+  }
+}
+return stream;
+
 }
 
 ostream & operator << (ostream & strm, LZespolona &Z1){
