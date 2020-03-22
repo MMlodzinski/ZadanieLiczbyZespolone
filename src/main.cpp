@@ -1,7 +1,9 @@
 #include <iostream>
 #include "BazaTestu.hh"
+#include "Statystyka.hh"
 
 using namespace std;
+
 
 int main(int argc, char **argv)
 {
@@ -28,14 +30,28 @@ int main(int argc, char **argv)
   cout << endl;
 
   WyrazenieZesp   WyrZ_PytanieTestowe;
+  LZespolona LZ;
+  Statystyka stats;
+  inicjalizacja(&stats);
   
   while (PobierzNastpnePytanie(&BazaT,&WyrZ_PytanieTestowe)) {
-    cout << " Czesc rzeczywista pierwszego argumentu: ";
-    cout << WyrZ_PytanieTestowe.Arg1.re << endl;
+    cout << " Podaj wynik operacji: ";
+    cout << WyrZ_PytanieTestowe << endl;
+
+    do
+    {
+      cin.clear();
+      cin>>LZ;
+    }while (!cin.good());
+
+    if(LZ==Oblicz(WyrZ_PytanieTestowe))
+      stats.pop++;
+    stats.odp++;
   }
 
   
   cout << endl;
   cout << " Koniec testu" << endl;
   cout << endl;
+  pokaz(stats);
   }

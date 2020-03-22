@@ -6,4 +6,8 @@ struct  Statystyka {
   int pop;
 };
 
+void inicjalizacja(Statystyka *stats);
+float procent(Statystyka stats);
+void pokaz(Statystyka stats);
+
 #endif
