@@ -122,39 +122,85 @@ void wyswietl(LZespolona l){
 
 istream & operator >> (istream & strm, LZespolona &Z1){
   char znak;
+  int a=1;
   strm>>znak;
   if(znak!='(')
     strm.setstate(ios::failbit);
-  if(!(strm>>Z1.re))strm.setstate(ios::failbit);
-  strm>>znak;
-  if(znak=='i'){
-    Z1.im=Z1.re;
-    Z1.re=0;
-  }else if(znak==')'){
-    Z1.im=0;
-    return strm;
-  }else{
-    if(!(strm>>Z1.im))strm.setstate(ios::failbit);
-    if(znak=='-')
-      Z1.im=(-Z1.im);
-    else{
-      if (znak!='+'){
-        strm.setstate(ios::failbit);
-      }   
-    }  
-    strm>>znak;
-    if(znak!='i')
-      strm.setstate(ios::failbit);
+  strm.get(znak);
+  if (znak=='-'){
+    a=-1;
+    strm.get(znak);
   }
-  
+  if (znak!='i'){
+    strm.unget();
+    if(!(strm>>Z1.re))strm.setstate(ios::failbit);
+    Z1.re=Z1.re*a;
+    strm.get(znak);
+    if(znak=='i'){
+      Z1.im=Z1.re;
+      Z1.re=0;
+    }else{
+      if(znak==')'){
+      Z1.im=0;
+      strm.unget();
+    }else{
+      if(znak=='-')
+        a=-1;
+    else if (znak=='+'){
+      a=1;
+    }else{
+      strm.setstate(ios::failbit);
+    }
+    strm.get(znak);
+    if(znak=='i'){
+      Z1.im=a;
+    }else{
+      strm.unget();
+   if(!(strm>>Z1.im))strm.setstate(ios::failbit);
+   Z1.im=Z1.im*a;
+      strm>>znak;
+      if(znak!='i')
+        strm.setstate(ios::failbit);
+    }
+    }
+  }
+  }
+  else{
+
+    Z1.re=0;
+    Z1.im=a;
+  }
   strm>>znak;
   if(znak!=')')
     strm.setstate(ios::failbit);
+  
   return strm;
 }
 
 ostream & operator << (ostream & strm, LZespolona &Z1){
-  strm<<'('<<Z1.re<<showpos<<Z1.im<<noshowpos<<"i)";
+  strm<<'(';
+  if(Z1.re==0 && Z1.im==0)
+    strm<<'0';
+  else if(Z1.re==0){
+    if(Z1.im!=1 && Z1.im!=-1)
+      strm<<Z1.im;
+    if(Z1.im==-1)
+      strm<<'-';
+    strm<<'i';
+  }
+  else if(Z1.im==0)
+    strm<<Z1.re;
+  else{
+    strm<<Z1.re;
+    if(Z1.im!=1 && Z1.im!=-1)
+      strm<<showpos<<Z1.im<<noshowpos;
+    if(Z1.im==-1)
+      strm<<'-';
+    strm<<'i';
+  }
+  
+  strm<<')';
+
   return strm;
 
 }
