@@ -125,19 +125,28 @@ istream & operator >> (istream & strm, LZespolona &Z1){
   strm>>znak;
   if(znak!='(')
     strm.setstate(ios::failbit);
-  strm>>Z1.re;
+  if(!(strm>>Z1.re))strm.setstate(ios::failbit);
   strm>>znak;
-  strm>>Z1.im;
-  if(znak=='-')
-    Z1.im=(-Z1.im);
-  else{
-    if (znak!='+'){
+  if(znak=='i'){
+    Z1.im=Z1.re;
+    Z1.re=0;
+  }else if(znak==')'){
+    Z1.im=0;
+    return strm;
+  }else{
+    if(!(strm>>Z1.im))strm.setstate(ios::failbit);
+    if(znak=='-')
+      Z1.im=(-Z1.im);
+    else{
+      if (znak!='+'){
+        strm.setstate(ios::failbit);
+      }   
+    }  
+    strm>>znak;
+    if(znak!='i')
       strm.setstate(ios::failbit);
-    }   
-  }  
-  strm>>znak;
-  if(znak!='i')
-    strm.setstate(ios::failbit);
+  }
+  
   strm>>znak;
   if(znak!=')')
     strm.setstate(ios::failbit);
@@ -147,4 +156,5 @@ istream & operator >> (istream & strm, LZespolona &Z1){
 ostream & operator << (ostream & strm, LZespolona &Z1){
   strm<<'('<<Z1.re<<showpos<<Z1.im<<noshowpos<<"i)";
   return strm;
+
 }

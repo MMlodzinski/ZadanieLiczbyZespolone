@@ -8,8 +8,13 @@ using namespace std;
 
 int main(int argc, char **argv)
 {
-  WyrazenieZesp w1;
-  cin>>w1;
+  LZespolona w1;
+  do
+  {
+    cin.clear();
+    cin>>w1;
+  }while (!cin.good());
+  
   cout<<w1;
 
 
