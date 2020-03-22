@@ -93,10 +93,10 @@ std::istream & operator >> (std::istream & strm, Operator & op) {
   char znak;
   strm >> znak;
   switch (znak) {
-  case '+':op = Op_Dodaj;
-  case '-':op = Op_Odejmij;
-  case '*':op = Op_Mnoz;
-  case '/':op = Op_Dziel;
+  case '+':op = Op_Dodaj;break;
+  case '-':op = Op_Odejmij;break;
+  case '*':op = Op_Mnoz;break;
+  case '/':op = Op_Dziel;break;
   }
   return strm;
 }
