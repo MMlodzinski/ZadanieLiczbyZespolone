@@ -305,7 +305,7 @@ ostream & operator << (ostream & strm, LZespolona &Z1){
     strm<<Z1.re;
   else{
     strm<<Z1.re;
-    if(Z1.im!=1 && Z1.im!=-1)
+    if(Z1.im!=1 || Z1.im!=-1)
       strm<<showpos<<Z1.im<<noshowpos;
     if(Z1.im==-1)
       strm<<'-';

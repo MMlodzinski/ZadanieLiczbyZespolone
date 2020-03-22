@@ -12,5 +12,6 @@ float procent(Statystyka stats){
 }
 
 void pokaz(Statystyka stats){
-    std::cout<<"Poprawne odpowiedzi: "<<stats.pop<<std::endl<<"Ilość pytań: "<<stats.odp<<std::endl<<"Wynik: "<<procent(stats)<<'%'<<std::endl;
+    int a=procent(stats);
+    std::cout<<"Poprawne odpowiedzi: "<<stats.pop<<std::endl<<"Ilość pytań: "<<stats.odp<<std::endl<<"Wynik: "<<a<<'%'<<std::endl;
 }
