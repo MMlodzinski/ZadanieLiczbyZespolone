@@ -34,7 +34,7 @@ LZespolona  operator * (LZespolona  Skl1,  LZespolona  Skl2);
 LZespolona  operator / (LZespolona  Skl1,  LZespolona  Skl2);
 LZespolona  sprzezenie (LZespolona  Skl);
 double modul (LZespolona Skl);
-int operator == (LZespolona Skl1, LZespolona Skl2);
+bool operator == (LZespolona Skl1, LZespolona Skl2);
 int operator != (LZespolona Skl1, LZespolona Skl2);
 LZespolona operator % (LZespolona Skl, double dziel);
 std::istream & operator >> (std::istream & strm, LZespolona &Z1);

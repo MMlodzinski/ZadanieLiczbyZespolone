@@ -40,7 +40,7 @@ LZespolona  operator * (LZespolona  Skl1,  LZespolona  Skl2){
   LZespolona wynik;
 
   wynik.re=Skl1.re*Skl2.re-Skl1.im*Skl2.im;
-  wynik.im=Skl1.re*Skl1.im+Skl1.im*Skl2.re;
+  wynik.im=Skl1.re*Skl2.im+Skl1.im*Skl2.re;
   return wynik;
 }
 
@@ -74,11 +74,11 @@ double modul (LZespolona Skl){
   return wynik;
 }
 
-int operator == (LZespolona Skl1, LZespolona Skl2){
+bool operator == (LZespolona Skl1, LZespolona Skl2){
   if(Skl1.re==Skl2.re && Skl1.im==Skl2.im)
-    return 1;
+    return true;
   else
-    return 0; 
+    return false; 
 }
 
 int operator != (LZespolona Skl1, LZespolona Skl2){

@@ -68,20 +68,21 @@ LZespolona Oblicz(WyrazenieZesp  WyrZ){
     LZespolona wynik;
     switch (WyrZ.Op)
     {
-    case 0:
+    case Op_Dodaj:
         wynik=WyrZ.Arg1+WyrZ.Arg2;
         break;
-    case 1:
+    case Op_Odejmij:
         wynik=WyrZ.Arg1-WyrZ.Arg2;
         break;
-    case 2:
+    case Op_Mnoz:
         wynik=WyrZ.Arg1*WyrZ.Arg2;
         break;
-    case 3:
+    case Op_Dziel:
         wynik=WyrZ.Arg1/WyrZ.Arg2;
         break;    
     }
     return wynik;
+    
 }
 
 std::istream & operator >> (std::istream & strm, WyrazenieZesp & wyraz) {

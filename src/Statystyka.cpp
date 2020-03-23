@@ -7,7 +7,7 @@ void inicjalizacja(Statystyka *stats){
 }
 
 float procent(Statystyka stats){
-    float wynik=(stats.pop/stats.odp)*100;
+    float wynik=(stats.pop*100/stats.odp);
     return wynik;
 }
 

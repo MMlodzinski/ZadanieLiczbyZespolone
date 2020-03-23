@@ -44,8 +44,13 @@ int main(int argc, char **argv)
       cin>>LZ;
     }while (!cin.good());
 
-    if(LZ==Oblicz(WyrZ_PytanieTestowe))
+    if(LZ==Oblicz(WyrZ_PytanieTestowe)){
       stats.pop++;
+      cout<<"Poprawna odpowiedź"<<endl;
+    }else{
+      LZ=Oblicz(WyrZ_PytanieTestowe);
+      cout<<"Zła odpowiedź \n Prawidłowa odpowiedź to "<<LZ;
+    }
     stats.odp++;
   }
 
