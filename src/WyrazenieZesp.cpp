@@ -13,6 +13,7 @@ using std::noshowpos;
  * w pliku naglowkowym.
  */
 
+/*
 void Wyswietl(WyrazenieZesp WyrZ){
   if (WyrZ.Arg1.re==0)
   {
@@ -63,7 +64,15 @@ case 3:
   }
   
 }
+*/
 
+/*
+* Funkcja oblicza wyrażenie zespolone.
+* Argumenty:
+*   WyrZ-wyrazenie zespolone ktore bedzie obliczane
+* Zwraca:
+*   Wynik wyrazenia zespolonego
+*/
 LZespolona Oblicz(WyrazenieZesp  WyrZ){
     LZespolona wynik;
     switch (WyrZ.Op)
@@ -85,6 +94,7 @@ LZespolona Oblicz(WyrazenieZesp  WyrZ){
     
 }
 
+/*
 std::istream & operator >> (std::istream & strm, WyrazenieZesp & wyraz) {
   strm >> wyraz.Arg1 >> wyraz.Op >> wyraz.Arg2;
   return strm;
@@ -93,6 +103,7 @@ std::istream & operator >> (std::istream & strm, WyrazenieZesp & wyraz) {
 std::istream & operator >> (std::istream & strm, Operator & op) {
   char znak;
   strm >> znak;
+  if(znak!='+' && znak!='-' && znak!='*' && znak!='/')strm.setstate(std::ios::failbit);
   switch (znak) {
   case '+':op = Op_Dodaj;break;
   case '-':op = Op_Odejmij;break;
@@ -101,12 +112,19 @@ std::istream & operator >> (std::istream & strm, Operator & op) {
   }
   return strm;
 }
+*/
 
+/*
+* Wypisuje wyrazenie zespolone
+*/
 std::ostream & operator << (std::ostream & strm, WyrazenieZesp & wyraz){
     strm << wyraz.Arg1 << wyraz.Op << wyraz.Arg2;
     return strm;
 }
 
+/*
+* Wypisuje operator w wyrazeniu zespolonym
+*/
 std::ostream & operator << (std::ostream & strm, Operator & op){
     switch (op){
     case Op_Dodaj:strm<<'+';break;

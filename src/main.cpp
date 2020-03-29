@@ -38,7 +38,7 @@ int main(int argc, char **argv)
     cout << " Podaj wynik operacji: ";
     cout << WyrZ_PytanieTestowe << endl;
 
-    do
+    do/*bedzie pobieral odpowiedzi dopoki uzytkownik nie wpisze liczby bedacej liczba zespolona*/
     {
       cin.clear();
       cin>>LZ;
@@ -49,12 +49,12 @@ int main(int argc, char **argv)
       cout<<"Poprawna odpowiedź"<<endl;
     }else{
       LZ=Oblicz(WyrZ_PytanieTestowe);
-      cout<<"Zła odpowiedź \n Prawidłowa odpowiedź to "<<LZ;
+      cout<<"Zła odpowiedź \n Prawidłowa odpowiedź to "<<LZ<<endl;
     }
     stats.odp++;
   }
 
-  
+
   cout << endl;
   cout << " Koniec testu" << endl;
   cout << endl;

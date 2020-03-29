@@ -3,6 +3,7 @@
 
 
 #include "WyrazenieZesp.hh"
+#include <fstream>
 
 
 /*
@@ -26,5 +27,5 @@ bool InicjalizujTest( BazaTestu  *wskBazaTestu, const char*  sNazwaTestu );
  * Udostepnia nastepne pytanie z bazy.
  */
 bool PobierzNastpnePytanie( BazaTestu  *wskBazaTestu,  WyrazenieZesp *wskWyr );
-WyrazenieZesp wczytajj(BazaTestu *baza);
+
 #endif

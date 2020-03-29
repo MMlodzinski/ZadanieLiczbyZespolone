@@ -28,6 +28,14 @@ LZespolona  operator + (LZespolona  Skl1,  LZespolona  Skl2)
   return Wynik;
 }
 
+/*!
+ * Realizuje odjecie dwoch liczb zespolonych.
+ * Argumenty:
+ *    Skl1 - odjemna,
+ *    Skl2 - odjemnik.
+ * Zwraca:
+ *    Roznice dwoch skladnikow przekazanych jako parametry.
+ */
 LZespolona operator - (LZespolona Skl1, LZespolona Skl2){
   LZespolona wynik;
 
@@ -36,6 +44,14 @@ LZespolona operator - (LZespolona Skl1, LZespolona Skl2){
   return wynik;
 }
 
+/*!
+ * Realizuje pomnozenie dwoch liczb zespolonych.
+ * Argumenty:
+ *    Skl1 - pierwszy skladnik mnozenia,
+ *    Skl2 - drugi skladnik mnozenia.
+ * Zwraca:
+ *    Iloczyn dwoch skladnikow przekazanych jako parametry.
+ */
 LZespolona  operator * (LZespolona  Skl1,  LZespolona  Skl2){
   LZespolona wynik;
 
@@ -44,20 +60,26 @@ LZespolona  operator * (LZespolona  Skl1,  LZespolona  Skl2){
   return wynik;
 }
 
-/*LZespolona  operator / (LZespolona  Skl1,  LZespolona  Skl2){
-  LZespolona wynik;
-
-  wynik.re=(Skl1.re*Skl2.re+Skl1.im*Skl2.im)/(Skl2.re*Skl2.re+Skl2.im*Skl2.im);
-  wynik.im=(Skl1.im*Skl2.re-Skl1.re*Skl2.im)/(Skl2.re*Skl2.re+Skl2.im*Skl2.im);
-  return wynik;
-}*/
-
+/*!
+ * Realizuje podzielenie dwoch liczb zespolonych.
+ * Argumenty:
+ *    Skl1 - dzielna,
+ *    Skl2 - dzielnik.
+ * Zwraca:
+ *    Iloraz dwoch skladnikow przekazanych jako parametry.
+ */
 LZespolona operator / (LZespolona  Skl1,  LZespolona  Skl2){
   LZespolona wynik=(Skl1*sprzezenie(Skl2))%(modul(Skl2)*modul(Skl2));
   return wynik;
 }
 
-//sprzezenie
+/*!
+ * Realizuje sprzezenie liczby zespolonej.
+ * Argumenty:
+ *    Skl - liczba sprzezana
+ * Zwraca:
+ *    Liczbe sprzezona do podanej liczby.
+ */
 LZespolona  sprzezenie (LZespolona  Skl){
   LZespolona wynik;
 
@@ -66,7 +88,13 @@ LZespolona  sprzezenie (LZespolona  Skl){
   return wynik;
 }
 
-//modul
+/*!
+ * Oblicza modul liczby zespolonej.
+ * Argumenty:
+ *    Skl - liczba z ktorej uzyskamy modul.
+ * Zwraca:
+ *    Modul podanej liczby.
+ */
 double modul (LZespolona Skl){
   double wynik;
 
@@ -74,6 +102,14 @@ double modul (LZespolona Skl){
   return wynik;
 }
 
+/*!
+ * Sprawdza czy 2 liczby zespolone sa identyczne.
+ * Argumenty:
+ *    Skl1 - pierwsza liczba,
+ *    Skl2 - druga liczba.
+ * Zwraca:
+ *    True gdy liczby są takie same i false gdy nie są.
+ */
 bool operator == (LZespolona Skl1, LZespolona Skl2){
   if(Skl1.re==Skl2.re && Skl1.im==Skl2.im)
     return true;
@@ -81,6 +117,14 @@ bool operator == (LZespolona Skl1, LZespolona Skl2){
     return false; 
 }
 
+/*!
+ * Sprawdza czy 2 liczby zespolone nie sa identyczne.
+ * Argumenty:
+ *    Skl1 - pierwsza liczba,
+ *    Skl2 - druga liczba.
+ * Zwraca:
+ *    False gdy liczby są takie same i true gdy nie są.
+ */
 bool operator != (LZespolona Skl1, LZespolona Skl2){
   if(Skl1.re==Skl2.re && Skl1.im==Skl2.im)
     return false;
@@ -88,7 +132,14 @@ bool operator != (LZespolona Skl1, LZespolona Skl2){
     return true; 
 }
 
-//operator dzielenia liczby zespolonej przez całkowitą
+/*!
+ * Realizuje dzielenie liczby zespolonej przez rzeczywista.
+ * Argumenty:
+ *    Skl - dzielna,
+ *    dziel - dzielnik.
+ * Zwraca:
+ *    Iloraz liczby zespolonej i calkowitej.
+ */
 LZespolona operator % (LZespolona Skl, double dziel){
   LZespolona wynik;
 
@@ -97,6 +148,14 @@ LZespolona operator % (LZespolona Skl, double dziel){
   return wynik;
 }
 
+/*!
+ * Tworzy liczbe zespolona.
+ * Argumenty:
+ *    re - czesc rzeczywista,
+ *    im - czesc urojona.
+ * Zwraca:
+ *    Liczbe zespolona zlozona z podanej czesci rzeczywistej i urojonej.
+ */
 LZespolona utworz(double re, double im){
   LZespolona l;
   l.re=re;
@@ -104,22 +163,14 @@ LZespolona utworz(double re, double im){
   return l;
 }
 
-void wyswietl(LZespolona l){
-  if(l.im!=0)
-    cout<<l.re<<showpos<<l.im<<noshowpos<<"i";
-  else
-    cout<<l.re;
-}
-
-/*void wczytaj(LZespolona *z){
-  char lnawias, pnawias, i;
-  cin>>lnawias>>z->re>>z->im>>i>>pnawias;
-  if(lnawias!='(' || pnawias!=')' || i!='i')
-  {
-    cerr<<"zle napisana liczba zespolona";
-  }
-}*/
-
+/*!
+ * Wczytuje liczbe zespolona.
+ * Argumenty:
+ *    &stream - strumien,
+ *    &LZ - liczba zespolona.
+ * Wczytuje każda liczbe zespolona, wlacznie z takimi zapisanymi notacja skrotowa.
+ * Niezbedne jest zapisanie liczby w nawiasach.
+ */
 std::istream & operator >> (std::istream &stream, LZespolona &LZ){
   char znak;
   stream.clear();
@@ -290,6 +341,13 @@ return stream;
 
 }
 
+/*!
+ * Wypisuje liczbe zespolona.
+ * Argumenty:
+ *    &strm - strumien,
+ *    &Z1 - liczba zespolona.
+ * Wypisuje liczby zespolone w notacji skrotowej.
+ */
 ostream & operator << (ostream & strm, LZespolona &Z1){
   strm<<'(';
   if(Z1.re==0 && Z1.im==0)
@@ -305,7 +363,7 @@ ostream & operator << (ostream & strm, LZespolona &Z1){
     strm<<Z1.re;
   else{
     strm<<Z1.re;
-    if(Z1.im!=1 || Z1.im!=-1)
+    if(Z1.im!=1 && Z1.im!=-1)
       strm<<showpos<<Z1.im<<noshowpos;
     if(Z1.im==-1)
       strm<<'-';

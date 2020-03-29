@@ -2,6 +2,7 @@
 #include <cstring>
 #include <cassert>
 #include "BazaTestu.hh"
+#include <fstream>
 
 using namespace std;
 
@@ -21,7 +22,12 @@ static WyrazenieZesp  TestLatwy[] =
  *
  */
 
-
+static WyrazenieZesp  TestTrudny[] =
+  { {{2,1}, Op_Dodaj, {1,2}},
+    {{1,0}, Op_Odejmij, {0,1}},
+    {{3,0}, Op_Mnoz, {0,3}},
+    {{4,8}, Op_Dziel, {1,0}},
+  };
 
 
 
@@ -77,6 +83,11 @@ bool InicjalizujTest( BazaTestu  *wskBazaTestu, const char *sNazwaTestu )
     UstawTest(wskBazaTestu,TestLatwy,sizeof(TestLatwy)/sizeof(WyrazenieZesp));
     return true;
   }
+
+  if (!strcmp(sNazwaTestu,"trudny")) {
+    UstawTest(wskBazaTestu,TestTrudny,sizeof(TestTrudny)/sizeof(WyrazenieZesp));
+    return true;
+  }
   /*
    * Analogicznie zrob inicjalizacje dla testu trudne
    */
@@ -113,9 +124,4 @@ bool PobierzNastpnePytanie( BazaTestu  *wskBazaTestu, WyrazenieZesp *wskWyrazeni
   *wskWyrazenie = wskBazaTestu->wskTabTestu[wskBazaTestu->IndeksPytania];
   ++wskBazaTestu->IndeksPytania;
   return true;
-}
-
-WyrazenieZesp wczytajj(BazaTestu *baza){
-  WyrazenieZesp w=(baza->wskTabTestu[baza->IndeksPytania]);
-  return w;
 }
